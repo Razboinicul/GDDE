@@ -7,6 +7,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o0oh7"]
 
 [node name="FakeButton" type="Area2D" groups=["button"]]
+collision_layer = 3
+collision_mask = 2
 script = ExtResource("1_3dalb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -22,3 +24,6 @@ label_settings = SubResource("LabelSettings_f5ckh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["button"]]
 shape = SubResource("RectangleShape2D_o0oh7")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

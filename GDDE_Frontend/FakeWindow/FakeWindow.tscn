@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjc8kpq2v83sd"]
+
+[ext_resource type="Script" path="res://FakeWindow/FakeWindow.gd" id="1_foa5n"]
+
+[node name="FakeWindow" type="Node2D"]
+script = ExtResource("1_foa5n")
+win_size = Vector2(250, 100)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 98.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 24.0
+offset_right = 108.0
+offset_bottom = 64.0
+color = Color(0.442911, 0.442911, 0.442911, 1)

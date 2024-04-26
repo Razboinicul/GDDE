@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://52ki7hv6d0ul"]
+[gd_scene load_steps=5 format=3 uid="uid://52ki7hv6d0ul"]
 
 [ext_resource type="Script" path="res://Main/Main.gd" id="1_7ardx"]
 [ext_resource type="PackedScene" uid="uid://c1vvucjupqur1" path="res://FakeButton/FakeButton.tscn" id="1_plrti"]
 [ext_resource type="PackedScene" uid="uid://ci004gqkiov8e" path="res://Mouse/Mouse.tscn" id="2_se4lu"]
+[ext_resource type="PackedScene" uid="uid://bjc8kpq2v83sd" path="res://FakeWindow/FakeWindow.tscn" id="4_qfdmb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -12,6 +13,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7ardx")
+
+[node name="Mouse" parent="." instance=ExtResource("2_se4lu")]
+visibility_layer = 1023
 
 [node name="Taskbar" type="ColorRect" parent="."]
 layout_mode = 1
@@ -24,16 +28,39 @@ grow_vertical = 0
 color = Color(0.43134, 0.43134, 0.43134, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="Test" type="VBoxContainer" parent="Taskbar"]
+visible = false
+layout_mode = 0
+offset_top = -40.0
+offset_right = 99.0
+
+[node name="App1" parent="Taskbar/Test" instance=ExtResource("1_plrti")]
+text = "App1"
+
+[node name="App2" parent="Taskbar/Test" instance=ExtResource("1_plrti")]
+position = Vector2(0, -40)
+text = "App2"
+
+[node name="App3" parent="Taskbar/Test" instance=ExtResource("1_plrti")]
+position = Vector2(0, -80)
+text = "App3"
+
 [node name="FakeButton" parent="Taskbar" instance=ExtResource("1_plrti")]
 text = "Hello There"
 size = 32
-
-[node name="Mouse" parent="." instance=ExtResource("2_se4lu")]
+double = false
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "BUttin pressed"
 
+[node name="Window" parent="." instance=ExtResource("4_qfdmb")]
+visible = false
+
+[connection signal="click" from="Taskbar/Test/App1" to="." method="_on_app_1_click"]
+[connection signal="click" from="Taskbar/Test/App2" to="." method="_on_app_2_click"]
+[connection signal="click" from="Taskbar/Test/App3" to="." method="_on_app_3_click"]
 [connection signal="click" from="Taskbar/FakeButton" to="." method="_on_fake_button_click"]
